@@ -9,6 +9,7 @@ Fluxo completo em 10 etapas:
   4  Extrair seções da matéria-alvo
   5  Mapear cargos × matéria × nível
   6  Extrair texto completo das seções por cargo
+ 6b  Gerar índice hierárquico em Markdown (matéria > tópico > subtópico)
   7  Consolidar índice unificado (via LLM)
   8  Identificar dependências entre tópicos (via LLM)
   9  Gerar prompt de estudo (via LLM)
@@ -549,138 +550,225 @@ def etapa9_gerar_prompt_estudo(niveis: dict, textos_brutos: dict[str, str] | Non
     return prompt_final
 
 
+# ── Índice hierárquico — constantes e helpers ────────────────────────────────
+
+_RE_INICIO_DA = re.compile(
+    r'(?:NOÇ[ÕO]ES?\s+DE\s+)?DIREITO\s+ADMINISTRATIVO\s*[:\n]',
+    re.IGNORECASE,
+)
+_RE_FIM_SECAO = re.compile(
+    r'\n\s*(?:NOÇ[ÕO]ES?\s+DE\s+)?[A-ZÁÉÍÓÚÀÃÕÂÊÔÜ][A-ZÁÉÍÓÚÀÃÕÂÊÔÜ\s\-]{3,}[:\n]',
+)
+_RE_SPLIT_ITEM = re.compile(r'\.\s+(?=\d+(?:\.\d+)*\s+[A-ZÁÉÍÓÚÀÃÕÂÊÔÜ])')
+_RE_ITEM_HEAD = re.compile(r'^(\d+(?:\.\d+)*)\s+(.*)', re.DOTALL)
+_RE_SPLIT_SENTENCA = re.compile(r'\.\s+(?=[A-ZÁÉÍÓÚÀÃÕÂÊÔÜ])')
+
+_TOPICOS_CANONICOS: list[tuple[str, list[str]]] = [
+    ("Princípios / Regime Jurídico",       ["regime jurídico", "princíp", "supremacia", "indisponib", "fontes"]),
+    ("Organização administrativa",          ["organização admin", "centraliz", "descentraliz", "desconcentr", "direta e indiret"]),
+    ("Administração Indireta",              ["autarquia", "empresa pública", "sociedade de economia", "indireta e entidade", "entidades paral"]),
+    ("Poderes administrativos",             ["poder hier", "poder discipl", "poder de polícia", "poderes admin", "poderes e deveres", "regulament"]),
+    ("Ato administrativo",                  ["ato administrativo", "atos admin"]),
+    ("Agentes públicos / Servidores",       ["agentes públicos", "servidores", "8.112", "cargo, emprego"]),
+    ("Responsabilidade civil do Estado",    ["responsabilidade civil"]),
+    ("Serviços públicos",                   ["serviços públicos", "serviço público"]),
+    ("Controle da administração",           ["controle da admin", "controle judic", "controle legisl", "controle exercido"]),
+    ("Improbidade administrativa",          ["improbidade", "8.429"]),
+    ("Processo administrativo",             ["processo admin", "9.784"]),
+    ("Licitações e contratos",              ["licitação", "contratos admin", "14.133"]),
+    ("Bens públicos",                       ["bens públicos"]),
+]
+
+# (cargo_id, label de exibição, nível de exigência, chave edital, página DA, label tabela)
+_CARGOS_INDICE: list[tuple[str, str, str, str, int, str]] = [
+    ("TCU",        "TCU 2025 — AUFC Auditoria de TI",           "Completo", "TCU",    50, "TCU 2025"),
+    ("TCE-RN_C12", "TCE-RN 2025 — Auditor Controle Externo TI", "Noções",   "TCE-RN", 57, "TCE-RN Aud."),
+    ("TCE-RN_C4",  "TCE-RN 2025 — Analistas TI (C4/C5)",        "Noções",   "TCE-RN", 67, "TCE-RN An."),
+    ("TRF1_TI",    "TRF1 2024 — Analista Judiciário TI",         "Noções",   "TRF1",   41, "TRF1 2024"),
+]
+
+
+def _extrair_secao_da(texto: str) -> str:
+    """Localiza e retorna o bloco textual de Direito Administrativo."""
+    m = _RE_INICIO_DA.search(texto)
+    if not m:
+        return ""
+    resto = texto[m.end():]
+    m_fim = _RE_FIM_SECAO.search(resto)
+    if m_fim:
+        resto = resto[: m_fim.start()]
+    return resto.strip()
+
+
+def _parsear_hierarquia(texto: str) -> list[tuple[str, str]]:
+    """Retorna [(numero, descricao), ...] dos itens numerados no texto da seção."""
+    partes = _RE_SPLIT_ITEM.split(texto)
+    itens: list[tuple[str, str]] = []
+    for parte in partes:
+        parte = parte.strip()
+        m = _RE_ITEM_HEAD.match(parte)
+        if m:
+            num = m.group(1)
+            desc = re.sub(r'\s+', ' ', m.group(2)).strip().rstrip('.')
+            if len(desc) > 2:
+                itens.append((num, desc))
+    return itens
+
+
+def _parsear_topicos_simples(texto: str) -> list[str]:
+    """Retorna lista de tópicos de texto não numerado (estilo TRF1)."""
+    partes = _RE_SPLIT_SENTENCA.split(texto)
+    topicos: list[str] = []
+    for p in partes:
+        p = re.sub(r'\s+', ' ', p).strip().rstrip('.')
+        if len(p) > 5:
+            topicos.append(p)
+    return topicos
+
+
+def _gerar_secao_md_cargo(titulo: str, nivel: str, itens: list, numerado: bool) -> str:
+    """
+    Gera bloco Markdown para um cargo com hierarquia:
+      ## Cargo · Nível             ← agrupador
+      ### N. Tópico                ← nível 2 do índice
+      - **N.N** Subtópico          ← nível 3 do índice
+        - **N.N.N** Sub-subtópico  ← nível 4 (se existir)
+    """
+    linhas: list[str] = [f"## {titulo} · _{nivel}_", ""]
+
+    if numerado:
+        grupos: dict[int, list[tuple[str, str]]] = {}
+        for num, desc in itens:
+            raiz = int(num.split(".")[0])
+            grupos.setdefault(raiz, []).append((num, desc))
+
+        for raiz in sorted(grupos):
+            sub = grupos[raiz]
+            top    = [(n, d) for n, d in sub if "." not in n]
+            nivel2 = [(n, d) for n, d in sub if n.count(".") == 1]
+            nivel3 = [(n, d) for n, d in sub if n.count(".") >= 2]
+
+            heading = top[0][1] if top else "_(ver subtópicos)_"
+            linhas.append(f"### {raiz}. {heading}")
+
+            for num2, desc2 in nivel2:
+                linhas.append(f"- **{num2}** {desc2}")
+                for num3, desc3 in nivel3:
+                    if num3.startswith(num2 + "."):
+                        linhas.append(f"  - **{num3}** {desc3}")
+
+            linhas.append("")
+    else:
+        for t in itens:
+            linhas.append(f"- {t}")
+        linhas.append("")
+
+    return "\n".join(linhas)
+
+
+def _tabela_comparativa(textos_edital: dict[str, str]) -> str:
+    """Gera tabela Markdown ✓/— de presença de tópico por edital."""
+    labels = list(textos_edital.keys())
+    sep_cols = "|".join([":------:"] * len(labels))
+    linhas = [
+        "| Tópico | " + " | ".join(labels) + " |",
+        f"|--------|{sep_cols}|",
+    ]
+    for topico, palavras in _TOPICOS_CANONICOS:
+        row = [topico]
+        for label in labels:
+            t = textos_edital[label].lower()
+            row.append("✓" if any(p in t for p in palavras) else "—")
+        linhas.append("| " + " | ".join(row) + " |")
+    return "\n".join(linhas)
+
+
+# ── Etapa 6b — Índice hierárquico em Markdown ────────────────────────────────
+
+
+def etapa6b_gerar_indice() -> str:
+    """
+    Lê diretamente as páginas de DA de cada edital e gera
+    output/indice_consolidado.md com 3 níveis:
+
+      # Matéria (nível 1)
+      ## Edital/Cargo (agrupador)
+      ### N. Tópico (nível 2)
+      - **N.N** Subtópico (nível 3)
+        - **N.N.N** Sub-subtópico (quando existir)
+    """
+    sep("ETAPA 6b — Gerar índice hierárquico em Markdown")
+
+    textos_tabela: dict[str, str] = {}
+    blocos: list[str] = []
+
+    for cid, titulo, nivel_exig, edital_key, pagina_da, label_tab in _CARGOS_INDICE:
+        caminho = EDITAIS.get(edital_key)
+        if caminho is None or not caminho.exists():
+            print(f"  AVISO: edital '{edital_key}' não encontrado — pulando {cid}")
+            continue
+
+        texto_pagina = extrair_paginas(caminho, [pagina_da])
+        secao = _extrair_secao_da(texto_pagina)
+        if not secao:
+            print(f"  AVISO: seção DA não localizada em {edital_key} p.{pagina_da}")
+            continue
+
+        textos_tabela[label_tab] = secao
+
+        numerado = bool(re.search(r'\b\d+\s+[A-ZÁÉÍÓÚÀÃÕÂÊÔÜ]', secao))
+        if numerado:
+            itens: list = _parsear_hierarquia(secao)
+            n_top = sum(1 for n, _ in itens if "." not in n)
+        else:
+            itens = _parsear_topicos_simples(secao)
+            n_top = len(itens)
+
+        blocos.append(_gerar_secao_md_cargo(titulo, nivel_exig, itens, numerado))
+        print(f"  {cid}: {n_top} tópico(s) | {'numerado' if numerado else 'não numerado'}")
+
+    tabela = _tabela_comparativa(textos_tabela)
+    corpo = "\n\n---\n\n".join(blocos)
+
+    indice = (
+        f"# {MATERIA.title()}\n\n"
+        f"> **Editais:** TCU 2025 | TCE-RN 2025 | TRF1 2024  \n"
+        f"> **Área:** Tecnologia da Informação  \n"
+        f"> Gerado automaticamente a partir dos PDFs dos editais\n\n"
+        f"---\n\n"
+        f"## Comparativo rápido\n\n"
+        f"{tabela}\n\n"
+        f"---\n\n"
+        f"{corpo}\n\n"
+        f"---\n\n"
+        f"> Configure `ANTHROPIC_API_KEY` e reexecute para consolidação semântica entre editais.\n"
+    )
+
+    save_text("indice_consolidado.md", indice)
+    return indice
+
+
 def _sequencia_fallback(textos: dict[str, str]) -> str:
     """
-    Extrai tópicos de Direito Administrativo dos textos brutos e organiza em
-    uma sequência sugerida de 5 níveis sem necessitar de LLM.
+    Fallback para etapa9: gera tabela comparativa inline e referencia o índice
+    hierárquico completo salvo pela etapa6b.
     """
-    # Ordem clássica de DA para concursos — serve de âncora para os tópicos encontrados
-    ORDEM_SUGERIDA: list[tuple[str, list[str]]] = [
-        (
-            "Fundamentos",
-            [
-                "princíp",
-                "conceito",
-                "regime jurídico",
-                "fontes",
-                "administração pública",
-                "organização",
-            ],
-        ),
-        (
-            "Estrutura",
-            [
-                "órgão",
-                "entidade",
-                "agência",
-                "autarquia",
-                "fundação",
-                "empresa pública",
-                "sociedade de economia",
-                "descentralização",
-                "desconcentração",
-                "poder de polícia",
-            ],
-        ),
-        (
-            "Instrumentos",
-            [
-                "ato administrativo",
-                "atributo",
-                "classificação",
-                "invalidação",
-                "convalidação",
-                "extinção",
-                "discricionário",
-                "vinculado",
-            ],
-        ),
-        (
-            "Controles",
-            [
-                "controle",
-                "legalidade",
-                "responsabilidade",
-                "improbidade",
-                "prescrição",
-                "recurso",
-                "revisão",
-            ],
-        ),
-        (
-            "Procedimentos e Contratos",
-            [
-                "licitação",
-                "contrato",
-                "processo administrativo",
-                "serviço público",
-                "concessão",
-                "permissão",
-                "bens públicos",
-                "desapropriação",
-                "tombamento",
-                "servidão",
-            ],
-        ),
-    ]
+    textos_tabela: dict[str, str] = {}
+    for _, titulo, _, edital_key, pagina_da, label_tab in _CARGOS_INDICE:
+        caminho = EDITAIS.get(edital_key)
+        if caminho and caminho.exists():
+            secao = _extrair_secao_da(extrair_paginas(caminho, [pagina_da]))
+            if secao:
+                textos_tabela[label_tab] = secao
 
-    # Coletar linhas de conteúdo programático de todos os textos
-    linhas_da: list[str] = []
-    for texto in textos.values():
-        for linha in texto.splitlines():
-            l = linha.strip()
-            if len(l) > 10 and any(
-                k in l.lower()
-                for k in [
-                    "princíp",
-                    "ato admin",
-                    "licitação",
-                    "contrato",
-                    "processo admin",
-                    "poder de polícia",
-                    "responsab",
-                    "improbidade",
-                    "controle",
-                    "serviço público",
-                    "bens públicos",
-                    "agente",
-                    "desapropriação",
-                    "órgão",
-                    "entidade",
-                    "autarquia",
-                    "concessão",
-                ]
-            ):
-                linhas_da.append(l)
-
-    # Deduplica preservando ordem
-    vistas: set[str] = set()
-    linhas_unicas: list[str] = []
-    for l in linhas_da:
-        chave = l[:60].lower()
-        if chave not in vistas:
-            vistas.add(chave)
-            linhas_unicas.append(l)
-
-    # Distribuir pelos níveis
-    saida: list[str] = []
-    for num, (nome_nivel, palavras) in enumerate(ORDEM_SUGERIDA, start=1):
-        itens = [l for l in linhas_unicas if any(p in l.lower() for p in palavras)]
-        if itens:
-            saida.append(f"### Nível {num} — {nome_nivel} _(sequência sugerida)_")
-            for item in itens[:15]:  # máximo 15 por nível
-                saida.append(f"- {item}")
-            saida.append("")
-
-    if not saida:
-        return "_Nenhum tópico de DA identificado automaticamente nos textos._"
-
-    saida.append(
-        "> **Nota:** Esta sequência foi gerada automaticamente a partir dos textos "
-        "dos editais. Para uma sequência com dependências precisas, configure "
-        "`ANTHROPIC_API_KEY` e reexecute o script."
+    tabela = _tabela_comparativa(textos_tabela) if textos_tabela else "_Sem dados._"
+    return (
+        "### Comparativo de cobertura por edital\n\n"
+        f"{tabela}\n\n"
+        "> **Índice completo** com hierarquia tópico/subtópico disponível em "
+        "`output/indice_consolidado.md`  \n"
+        "> Configure `ANTHROPIC_API_KEY` para sequenciamento por dependências (etapas 7-8)."
     )
-    return "\n".join(saida)
 
 
 # ── Etapa 10 — Validar cobertura ─────────────────────────────────────────────
@@ -720,6 +808,7 @@ def main() -> None:
     secoes = etapa4_extrair_materia()
     cargos_ti = etapa5_mapear_cargos(secoes)
     textos = etapa6_extrair_secoes(cargos_ti)
+    etapa6b_gerar_indice()
 
     # Etapas que dependem de LLM (requerem ANTHROPIC_API_KEY)
     _, topicos = etapa7_consolidar_indice(textos)
