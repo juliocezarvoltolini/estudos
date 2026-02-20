@@ -1,0 +1,196 @@
+
+============================================================
+CARGO: AUFC — Auditoria de TI  |  NÍVEL: Completo
+EDITAL: TCU  |  PÁGINAS: [50]
+============================================================
+
+--- Página 50 ---
+Controle abstrato de constitucionalidade. 9.4 Exame in abstractu da constitucionalidade de proposições legislativas.
+9.5 Ação declaratória de constitucionalidade. 9.6 Ação direta de inconstitucionalidade. 9.7 Arguição de
+descumprimento de preceito fundamental. 9.8 Ação direta de inconstitucionalidade por omissão. 9.9 Ação direta de
+inconstitucionalidade interventiva. 10 Defesa do Estado e das instituições democráticas. 10.1 Estado de defesa e
+estado de sítio. 10.2 Forças armadas. 10.3 Segurança pública. 11 Sistema Tributário Nacional. 11.1 Princípios gerais.
+11.2 Limitações do poder de tributar. 11.3 Impostos da União, dos estados e dos municípios. 11.4 Repartição das
+receitas tributárias. 12 Finanças públicas. 12.1 Normas gerais. 12.2 Orçamentos. 13 Ordem econômica e financeira.
+13.1 Princípios gerais da atividade econômica. 13.2 Política urbana, agrícola e fundiária e reforma agrária. 14 Sistema
+Financeiro Nacional. 15 Ordem social. 16 Emenda Constitucional nº 103/2019 (Reforma da Previdência). 17 Direitos e
+interesses das populações indígenas. 18 Direitos das Comunidades Remanescentes de Quilombos.
+DIREITO ADMINISTRATIVO: 1 Estado, governo e administração pública. 1.1 Conceitos. 1.2 Elementos. 2 Direito
+administrativo. 2.1 Conceito. 2.2 Objeto. 2.3 Fontes. 3 Ato administrativo. 3.1 Conceito, requisitos, atributos,
+classificação e espécies. 3.2 Extinção do ato administrativo: cassação, anulação, revogação e convalidação. 3.3
+Decadência administrativa. 4 Agentes públicos. 4.1 Legislação pertinente. 4.1.1 Lei nº 8.112/1990. 4.1.2 Disposições
+constitucionais aplicáveis. 4.2 Disposições doutrinárias. 4.2.1 Conceito. 4.2.2 Espécies. 4.2.3 Cargo, emprego e função
+pública. 4.2.4 Provimento. 4.2.5 Vacância. 4.2.6 Efetividade, estabilidade e vitaliciedade. 4.2.7 Remuneração. 4.2.8
+Direitos e deveres. 4.2.9 Responsabilidade. 4.2.10 Processo administrativo disciplinar. 5 Poderes da administração
+pública. 5.1 Hierárquico, disciplinar, regulamentar e de polícia. 5.2 Uso e abuso do poder. 6 Regime jurídico-
+administrativo. 6.1 Conceito. 6.2 Princípios expressos e implícitos da administração pública. 7 Responsabilidade civil
+do Estado. 7.1 Evolução histórica. 7.2 Responsabilidade civil do Estado no direito brasileiro. 7.2.1 Responsabilidade
+por ato comissivo do Estado. 7.2.2 Responsabilidade por omissão do 30 Estado. 7.3 Requisitos para a demonstração
+da responsabilidade do Estado. 7.4 Causas excludentes e atenuantes da responsabilidade do Estado. 7.5 Reparação
+do dano. 7.6 Direito de regresso. 8 Serviços públicos. 8.1 Conceito. 8.2 Elementos constitutivos. 8.3 Formas de
+prestação e meios de execução. 8.4 Delegação: concessão, permissão e autorização. 8.5 Classificação. 8.6 Princípios.
+9 Organização administrativa. 9.1 Centralização, descentralização, concentração e desconcentração. 9.2
+Administração direta e indireta. 9.3 Autarquias, fundações, empresas públicas e sociedades de economia mista. 9.4
+Entidades paraestatais e terceiro setor: s
+
+============================================================
+CARGO: Analista Administrativo — TI Desenvolvimento  |  NÍVEL: Noções
+EDITAL: TCE-RN  |  PÁGINAS: [47, 57, 67]
+============================================================
+
+--- Página 47 ---
+letramento digital e midiático (BNCC e Política Nacional de Educação Digital - Lei nº 14.533/2023). 1.2 
+Pensamento computacional aplicado ao serviço público: análise crítica de informações, ética no uso de dados 
+e combate à desinformação. 2 Informática básica e aplicada. 2.1 Sistemas operacionais: Microsoft Windows 
+(conceitos, interface, gerenciamento de arquivos, pastas e programas). 2.2 Editores de texto, planilhas e 
+apresentações: Microsoft Office (formatação de documentos, uso de fórmulas e funções, criação de gráficos 
+e apresentações). 2.3 Redes de computadores: conceitos básicos (LAN, WAN, Internet), protocolos (TCP/IP, 
+HTTP, SMTP, FTP) e noções de interoperabilidade de sistemas no setor público. 2.4 Ferramentas de 
+comunicação e colaboração: correio eletrônico (webmail, cliente de e-mail), aplicativos de comunicação 
+(Microsoft Teams, Google Meet) e noções de trabalho remoto. 3 Segurança e governança digital. 3.1 
+Segurança da informação: procedimentos de cópia de segurança (backup), noções de vírus, worms e pragas 
+virtuais. Programas de proteção (antivírus, firewall, anti-spyware). Ameaças digitais (phishing, pharming). 3.2 
+Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018): conceitos fundamentais, direitos dos 
+titulares e aplicação no setor público. 3.3 Armazenamento em nuvem (cloud storage): conceitos e aplicações 
+(OneDrive, Google Drive). Noções de assinatura digital em processos administrativos. 3.4 Marco Civil da 
+Internet (Lei nº 12.965/2014): princípios, direitos e deveres para o uso da Internet no Brasil. 4 Informática 
+aplicada ao setor público. 4.1 Governo Digital e serviços ao cidadão: Plataforma Gov.br (login único, carteira 
+digital, serviços integrados). Portal Nacional de Dados Abertos. Noções de transparência e acesso à 
+informação pública (Lei nº 12.527/2011 - Lei de Acesso à Informação). 4.2 Sistemas e ferramentas do setor 
+público: Processo Eletrônico Nacional (PEN). Sistema Eletrônico de Informações (SEI). Noções de assinatura 
+eletrônica e certificação digital em documentos oficiais. 4.3 Tecnologias emergentes no setor público: 
+Conceitos básicos de Inteligência Artificial aplicada a serviços públicos (IA generativa, chatbots, atendimento 
+automatizado). Noções de Big Data e análise de dados para políticas públicas. Internet das Coisas (IoT) em 
+cidades inteligentes. 4.4 Ética e responsabilidade digital no serviço público: Uso ético de tecnologias. 
+Combate a fake news e desinformação. Inclusão digital e acessibilidade em serviços públicos.  
+RACIOCÍNIO LÓGICO: 1 Estruturas lógicas. 2 Lógica de argumentação. 2.1 Analogias, inferências, deduções e 
+conclusões. 3 Lógica sentencial (ou proposicional). 3.1 Proposições simples e compostas. 3.2 Tabelas-
+verdade. 3.3 Equivalências. 3.4 Leis de De Morgan. 3.5 Diagramas lógicos. 4 Lógica de primeira ordem. 5 
+Princípios de contagem e probabilidade. 6 Operações com conjuntos. 7 Raciocínio lógico envolvendo 
+problemas aritméticos, ge
+
+============================================================
+CARGO: Analista Administrativo — TI Infraestrutura  |  NÍVEL: Noções
+EDITAL: TCE-RN  |  PÁGINAS: [47, 57, 67]
+============================================================
+
+--- Página 47 ---
+letramento digital e midiático (BNCC e Política Nacional de Educação Digital - Lei nº 14.533/2023). 1.2 
+Pensamento computacional aplicado ao serviço público: análise crítica de informações, ética no uso de dados 
+e combate à desinformação. 2 Informática básica e aplicada. 2.1 Sistemas operacionais: Microsoft Windows 
+(conceitos, interface, gerenciamento de arquivos, pastas e programas). 2.2 Editores de texto, planilhas e 
+apresentações: Microsoft Office (formatação de documentos, uso de fórmulas e funções, criação de gráficos 
+e apresentações). 2.3 Redes de computadores: conceitos básicos (LAN, WAN, Internet), protocolos (TCP/IP, 
+HTTP, SMTP, FTP) e noções de interoperabilidade de sistemas no setor público. 2.4 Ferramentas de 
+comunicação e colaboração: correio eletrônico (webmail, cliente de e-mail), aplicativos de comunicação 
+(Microsoft Teams, Google Meet) e noções de trabalho remoto. 3 Segurança e governança digital. 3.1 
+Segurança da informação: procedimentos de cópia de segurança (backup), noções de vírus, worms e pragas 
+virtuais. Programas de proteção (antivírus, firewall, anti-spyware). Ameaças digitais (phishing, pharming). 3.2 
+Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018): conceitos fundamentais, direitos dos 
+titulares e aplicação no setor público. 3.3 Armazenamento em nuvem (cloud storage): conceitos e aplicações 
+(OneDrive, Google Drive). Noções de assinatura digital em processos administrativos. 3.4 Marco Civil da 
+Internet (Lei nº 12.965/2014): princípios, direitos e deveres para o uso da Internet no Brasil. 4 Informática 
+aplicada ao setor público. 4.1 Governo Digital e serviços ao cidadão: Plataforma Gov.br (login único, carteira 
+digital, serviços integrados). Portal Nacional de Dados Abertos. Noções de transparência e acesso à 
+informação pública (Lei nº 12.527/2011 - Lei de Acesso à Informação). 4.2 Sistemas e ferramentas do setor 
+público: Processo Eletrônico Nacional (PEN). Sistema Eletrônico de Informações (SEI). Noções de assinatura 
+eletrônica e certificação digital em documentos oficiais. 4.3 Tecnologias emergentes no setor público: 
+Conceitos básicos de Inteligência Artificial aplicada a serviços públicos (IA generativa, chatbots, atendimento 
+automatizado). Noções de Big Data e análise de dados para políticas públicas. Internet das Coisas (IoT) em 
+cidades inteligentes. 4.4 Ética e responsabilidade digital no serviço público: Uso ético de tecnologias. 
+Combate a fake news e desinformação. Inclusão digital e acessibilidade em serviços públicos.  
+RACIOCÍNIO LÓGICO: 1 Estruturas lógicas. 2 Lógica de argumentação. 2.1 Analogias, inferências, deduções e 
+conclusões. 3 Lógica sentencial (ou proposicional). 3.1 Proposições simples e compostas. 3.2 Tabelas-
+verdade. 3.3 Equivalências. 3.4 Leis de De Morgan. 3.5 Diagramas lógicos. 4 Lógica de primeira ordem. 5 
+Princípios de contagem e probabilidade. 6 Operações com conjuntos. 7 Raciocínio lógico envolvendo 
+problemas aritméticos, ge
+
+============================================================
+CARGO: Auditor de Controle Externo — TI  |  NÍVEL: Noções
+EDITAL: TCE-RN  |  PÁGINAS: [47, 57, 67]
+============================================================
+
+--- Página 47 ---
+letramento digital e midiático (BNCC e Política Nacional de Educação Digital - Lei nº 14.533/2023). 1.2 
+Pensamento computacional aplicado ao serviço público: análise crítica de informações, ética no uso de dados 
+e combate à desinformação. 2 Informática básica e aplicada. 2.1 Sistemas operacionais: Microsoft Windows 
+(conceitos, interface, gerenciamento de arquivos, pastas e programas). 2.2 Editores de texto, planilhas e 
+apresentações: Microsoft Office (formatação de documentos, uso de fórmulas e funções, criação de gráficos 
+e apresentações). 2.3 Redes de computadores: conceitos básicos (LAN, WAN, Internet), protocolos (TCP/IP, 
+HTTP, SMTP, FTP) e noções de interoperabilidade de sistemas no setor público. 2.4 Ferramentas de 
+comunicação e colaboração: correio eletrônico (webmail, cliente de e-mail), aplicativos de comunicação 
+(Microsoft Teams, Google Meet) e noções de trabalho remoto. 3 Segurança e governança digital. 3.1 
+Segurança da informação: procedimentos de cópia de segurança (backup), noções de vírus, worms e pragas 
+virtuais. Programas de proteção (antivírus, firewall, anti-spyware). Ameaças digitais (phishing, pharming). 3.2 
+Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018): conceitos fundamentais, direitos dos 
+titulares e aplicação no setor público. 3.3 Armazenamento em nuvem (cloud storage): conceitos e aplicações 
+(OneDrive, Google Drive). Noções de assinatura digital em processos administrativos. 3.4 Marco Civil da 
+Internet (Lei nº 12.965/2014): princípios, direitos e deveres para o uso da Internet no Brasil. 4 Informática 
+aplicada ao setor público. 4.1 Governo Digital e serviços ao cidadão: Plataforma Gov.br (login único, carteira 
+digital, serviços integrados). Portal Nacional de Dados Abertos. Noções de transparência e acesso à 
+informação pública (Lei nº 12.527/2011 - Lei de Acesso à Informação). 4.2 Sistemas e ferramentas do setor 
+público: Processo Eletrônico Nacional (PEN). Sistema Eletrônico de Informações (SEI). Noções de assinatura 
+eletrônica e certificação digital em documentos oficiais. 4.3 Tecnologias emergentes no setor público: 
+Conceitos básicos de Inteligência Artificial aplicada a serviços públicos (IA generativa, chatbots, atendimento 
+automatizado). Noções de Big Data e análise de dados para políticas públicas. Internet das Coisas (IoT) em 
+cidades inteligentes. 4.4 Ética e responsabilidade digital no serviço público: Uso ético de tecnologias. 
+Combate a fake news e desinformação. Inclusão digital e acessibilidade em serviços públicos.  
+RACIOCÍNIO LÓGICO: 1 Estruturas lógicas. 2 Lógica de argumentação. 2.1 Analogias, inferências, deduções e 
+conclusões. 3 Lógica sentencial (ou proposicional). 3.1 Proposições simples e compostas. 3.2 Tabelas-
+verdade. 3.3 Equivalências. 3.4 Leis de De Morgan. 3.5 Diagramas lógicos. 4 Lógica de primeira ordem. 5 
+Princípios de contagem e probabilidade. 6 Operações com conjuntos. 7 Raciocínio lógico envolvendo 
+problemas aritméticos, ge
+
+============================================================
+CARGO: Analista Judiciário — Análise de Sistemas  |  NÍVEL: Noções
+EDITAL: TRF1  |  PÁGINAS: [16, 31, 33, 34, 38, 41]
+============================================================
+
+--- Página 16 ---
+Língua Portuguesa
+15
+Raciocínio Lógico e Matemático
+5
+Noções de Sustentabilidade
+5
+Noções de Direito Administrativo 8
+Noções de Direito Constitucional 7
+MÓDULO DE CONHECIMENTOS ESPECÍFICOS
+Conhecimentos Específicos
+40
+TOTAL DE QUESTÕES
+80
+10.7.6 Será atribuída nota zero à questão que apresentar mais de uma ou nenhuma resposta
+assinalada, ou à questão que apresentar emenda ou rasura.
+10.7.7 O candidato deverá assinalar a resposta da questão objetiva, usando caneta esferográfica
+de tinta azul ou preta, de material transparente, no cartão de respostas, que será o único documento válido
+para a correção das provas.
+10.7.8 Os prejuízos advindos do preenchimento indevido do cartão de respostas serão de inteira
+responsabilidade do candidato. Serão consideradas marcações indevidas as que estiverem em desacordo
+com este Edital ou com as instruções do cartão de respostas, como marcação rasurada, emendada ou
+com o campo de marcação não preenchido integralmente. Em hipótese alguma haverá substituição do
+cartão de respostas por erro do candidato.
+10.7.9 O candidato não deverá amassar, molhar, dobrar, rasgar, manchar ou, de qualquer modo,
+danificar o seu cartão de respostas, sob pena de arcar com os prejuízos advindos da impossibilidade de
+realização da leitura ótica.
+10.7.10 O candidato é responsável pela conferência de seus dados pessoais, em especial seu
+nome, seu número de inscrição, sua data de nascimento e o número de seu documento de identidade.
+10.7.11 Todos os candidatos, ao terminarem as provas, deverão, obrigatoriamente, entregar ao
+fiscal de aplicação o cartão de respostas que será utilizado para a correção de sua prova. O candidato que
+descumprir a regra de entrega desse documento será eliminado do Concurso.
+10.7.12 A FGV divulgará a imagem do cartão de respostas dos candidatos que realizarem a Prova
+Objetiva no endereço eletrônico https://conhecimento.fgv.br/concursos/trf1servidor24, após a data de
+divulgação do resultado da Prova Objetiva. A imagem ficará disponível por até 15 (quinze) dias corridos a
+contar da data de publicação do resultado final do Concurso Público.
+10.7.13 Após o prazo determinado no subitem anterior, não serão aceitos pedidos de
+disponibilização da imagem do cartão de respostas.
+10.7.14 Para todos os cargos, será considerado aprovado na Prova Objetiva:
+a) o candidato que, cumulativamente:
+- acertar, no mínimo 12 (doze) questões de Conhecimentos Gerais;
+-acertar, no mínimo, 20 (vinte) questões de Conhecimentos Específicos; e
+- acertar, no mínimo, 40 (quarenta) questões do total da Prova Objetiva.
+b) De acordo com as Resoluções n. 512/2023, n. 516/2023 e n. 549/2024, do CNJ, em relação
+aos candidatos indígenas, negros e pessoas com deficiência, serão considerados aprovados os candidatos
+que alcançarem 20% inferior à nota mínima estabelecida para aprovação dos candidatos da ampla
+concorrência, conforme alínea "a" do subitem 10.7.14.
+c) O candidato que não atender aos requisitos da alínea "a", ou no caso de ne
